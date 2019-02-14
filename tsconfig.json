@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-gannt": [
+        "dist/ngx-gannt"
+      ],
+      "ngx-gannt/*": [
+        "dist/ngx-gannt/*"
+      ]
+    }
   }
 }

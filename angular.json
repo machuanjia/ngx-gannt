@@ -134,6 +134,41 @@
           }
         }
       }
+    },
+    "NgxGannt": {
+      "root": "projects/ngx-gannt",
+      "sourceRoot": "projects/ngx-gannt/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-gannt/tsconfig.lib.json",
+            "project": "projects/ngx-gannt/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-gannt/src/test.ts",
+            "tsConfig": "projects/ngx-gannt/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-gannt/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-gannt/tsconfig.lib.json",
+              "projects/ngx-gannt/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ngx-gannt"
