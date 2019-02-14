@@ -1,16 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'ngx-gannt',
-  template: `
-    <p>
-      ngx-gannt works!
-    </p>
-  `,
-  styles: []
+  templateUrl:'./ngx-gannt.component.html',
+  styleUrls:['ngx-gannt.scss']
 })
 export class NgxGanntComponent implements OnInit {
-
+  @HostBinding('class.ngx-gannt-wrap') isWrap = true;
   constructor() { }
 
   ngOnInit() {

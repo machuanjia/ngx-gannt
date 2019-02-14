@@ -1,1 +1,9 @@
-<ngx-gannt></ngx-gannt>
+<header class="demo-header">
+  <nz-radio-group [(ngModel)]="view">
+    <label nz-radio-button nzValue="task">任务视图</label>
+    <label nz-radio-button nzValue="member">人员视图</label>
+  </nz-radio-group>
+</header>
+<section class="demo-body">
+  <ngx-gannt configuration="configuration" dateOnChange="dateOnChange"></ngx-gannt>
+</section>
