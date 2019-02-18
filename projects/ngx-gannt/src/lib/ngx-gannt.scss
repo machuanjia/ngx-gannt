@@ -1,3 +1,84 @@
-.ngx-gannt-wrap{
-    background: #f00;
+.ngx-gannt-wrap {
+  background: #f00;
+}
+.thy-gannt-container {
+  background-color: #fff;
+  display: flex;
+}
+
+.thy-gannt-aside {
+  min-width: 384px;
+  width: 384px;
+
+  > .thy-gannt-aside-hd {
+    border-bottom: 1px #eee solid;
+    height: 60px;
+    color: #888;
+    display: flex;
+    align-items: center;
+    > .thy-gannt-aside-identifier {
+      width: 90px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    > .thy-gannt-aside-tasks {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.thy-gannt-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  .thy-gannt-main-header-scales {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 60px;
+    border-bottom: 1px #eee solid;
+
+    > div {
+      text-align: center;
+      min-width: 50px;
+      position: relative;
+      padding-top: 30px;
+      color: #666;
+      font-size: 12px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-end;
+      padding-bottom: 5px;
+      > span {
+        position: absolute;
+        top: 12px;
+        left: 18px;
+        text-align: left;
+        white-space: nowrap;
+        background: #fff;
+        color: #666;
+      }
+    }
+  }
+}
+
+.thy-gannt-body {
+  display: flex;
+  flex-direction: row;
+  .thy-gannt-body-aside {
+    min-width: 384px;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    position: relative;
+    box-sizing: initial;
+    padding-right: 23px;
+    margin-right: -23px;
+    z-index: 1;
+  }
 }
