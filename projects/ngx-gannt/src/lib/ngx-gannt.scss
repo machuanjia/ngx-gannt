@@ -1,15 +1,16 @@
 .ngx-gannt-wrap {
-  background: #f00;
+  display: block;
+  height: 100%;
+  background: #fff;
 }
 .ngx-gannt-container {
-  background-color: #fff;
   display: flex;
+  height: 100%;
+  position: relative;
 }
 
 .ngx-gannt-aside {
-  min-width: 384px;
   width: 384px;
-
   > .ngx-gannt-aside-header {
     border-bottom: 1px #eee solid;
     height: 60px;
@@ -30,15 +31,26 @@
     }
   }
 }
-
-.ngx-gannt-main {
+.ngx-gannt-divider{
+  width: 7px;
+  box-shadow: 0 0 3px #ddd;
+  background: #fff;
+  cursor: ew-resize;
+  position: absolute;
+  left: 384px;
+  height: 100%;
+}
+.ngx-gannt-article {
   flex: 1;
+  width: 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  .ngx-gannt-main-header {
+  padding-left: 7px;
+  .ngx-gannt-article-header {
     display: flex;
     flex-wrap: nowrap;
+    white-space: nowrap;
     height: 60px;
     border-bottom: 1px #eee solid;
 
@@ -64,6 +76,11 @@
         color: #666;
       }
     }
+  }
+  .ngx-gannt-article-body{
+    flex-grow: 1;
+    overflow: auto;
+    height: 0;
   }
 }
 
