@@ -17,7 +17,9 @@ export class NgxGanntArticleComponent implements OnInit, OnDestroy {
   @HostBinding('class.ngx-gannt-article') isMain = true;
   @ViewChild('articleHeader') articleHeader;
   @ViewChild('articleBody') articleBody;
-
+  trackByIdFn(index, item) {
+    return item._id || item.id;
+  }
   constructor(
     public ngxGanntUiService: NgxGanntUiService,
     public ngxGanntService: NgxGanntService,

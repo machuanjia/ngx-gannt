@@ -23,7 +23,9 @@ export class NgxGanntComponent implements OnInit, AfterViewInit {
     public ngxGanntService: NgxGanntService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.ngxGanntUiService.init();
+  }
   ngAfterViewInit() {
     this.ngxGanntUiService.dividerXStatic = this.divider.nativeElement.offsetLeft;
   }
