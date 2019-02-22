@@ -1,105 +1,133 @@
-<header class="ngx-gannt-article-header" [ngxGanntScroll]="{left:1000,top:20}">
-  <div>
-    01
-    <span>2019年2月</span>
-  </div>
-  <div>
-    02
-  </div>
-  <div>
-    03
-  </div>
-  <div>
-    04
-  </div>
-  <div>
-    05
-  </div>
-  <div>
-    06
-  </div>
-  <div>
-    07
-  </div>
-  <div>
-    08
-  </div>
-  <div>
-    09
-  </div>
-  <div>
-    10
-  </div>
-  <div>
-    11
-  </div>
-  <div>
-    12
-  </div>
-  <div>
-    13
-  </div>
-  <div>
-    14
-  </div>
-  <div>
-    15
-  </div>
-  <div>
-    16
-  </div>
-  <div>
-    17
-  </div>
-  <div>
-    18
-  </div>
-  <div>
-    19
-  </div>
-  <div>
-    20
-  </div>
-  <div>
-    21
-  </div>
-  <div>
-    22
-  </div>
-  <div>
-    23
-  </div>
-  <div>
-    24
-  </div>
-  <div>
-    25
-  </div>
-  <div>
-    26
-  </div>
-  <div>
-    27
-  </div>
-  <div>
-    28
-  </div>
-  <div>
-    29
-  </div>
-  <div>
-    30
-  </div>
-  <div>
-    31
-  </div>
-  <div>
-    32
-  </div>
-  <div>
-    33
+<header class="ngx-gannt-article-header" #articleHeader>
+  <div
+    class="ngx-gannt-article-scales"
+    [ngxGanntScroll]="{
+      left: ngxGanntUiService.articleScrollLeft,
+      top: ngxGanntUiService.articleScrollTop,
+      isHidden: true
+    }"
+  >
+    <div>
+      01
+      <span>2019年2月</span>
+    </div>
+    <div>
+      02
+    </div>
+    <div>
+      03
+    </div>
+    <div>
+      04
+    </div>
+    <div>
+      05
+    </div>
+    <div>
+      06
+    </div>
+    <div>
+      07
+    </div>
+    <div>
+      08
+    </div>
+    <div>
+      09
+    </div>
+    <div>
+      10
+    </div>
+    <div>
+      11
+    </div>
+    <div>
+      12
+    </div>
+    <div>
+      13
+    </div>
+    <div>
+      14
+    </div>
+    <div>
+      15
+    </div>
+    <div>
+      16
+    </div>
+    <div>
+      17
+    </div>
+    <div>
+      18
+    </div>
+    <div>
+      19
+    </div>
+    <div>
+      20
+    </div>
+    <div>
+      21
+    </div>
+    <div>
+      22
+    </div>
+    <div>
+      23
+    </div>
+    <div>
+      24
+    </div>
+    <div>
+      25
+    </div>
+    <div>
+      26
+    </div>
+    <div>
+      27
+    </div>
+    <div>
+      28
+    </div>
+    <div>
+      29
+    </div>
+    <div>
+      30
+    </div>
+    <div>
+      31
+    </div>
+    <div>
+      32
+    </div>
+    <div>
+      33
+    </div>
   </div>
 </header>
-<div class="ngx-gannt-article-body" (scroll)="articleScroll($event)">
-  <div style="width:2000px;height:1000px;"></div>
+<div
+  class="ngx-gannt-article-body"
+  #articleBody
+  (scroll)="articleScroll($event)"
+  [ngxGanntScroll]="{
+    left: ngxGanntUiService.articleScrollLeft,
+    top: ngxGanntUiService.articleScrollTop,
+    isHidden: false
+  }"
+>
+  1<br /><br /><br /><br /><br /><br /><br />2
+  <br /><br /><br /><br /><br /><br /><br />3
+  <br /><br /><br /><br /><br /><br /><br />4
+  <br /><br /><br /><br /><br /><br /><br />5
+  <br /><br /><br /><br /><br /><br /><br />6
+  <br /><br /><br /><br /><br /><br /><br />7
+  <br /><br /><br /><br /><br /><br /><br />8
+  <br /><br /><br /><br /><br /><br /><br />9
+  <br /><br /><br /><br /><br /><br /><br />10
+  <br /><br /><br /><br /><br /><br /><br />11
+  <div style="width:2000px;height: 10px;background: #f00;"></div>
 </div>

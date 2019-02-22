@@ -7,7 +7,11 @@ export class NgxGanntScrollDirective {
   public value: string;
 
   @Input()
-  set ngxGanntScroll(value: { left?: number; top?: number }) {
+  set ngxGanntScroll(value: {
+    left?: number;
+    top?: number;
+    isHidden?: boolean;
+  }) {
     if (value) {
       this.setScroll(value);
     }
@@ -15,17 +19,21 @@ export class NgxGanntScrollDirective {
 
   constructor(private elementRef: ElementRef, private _render: Renderer2) {}
 
-  setScroll(value: { left?: number; top?: number }) {
+  setScroll(value: { left?: number; top?: number; isHidden?: boolean }) {
+    console.log(value)
     if (value.left) {
-        setTimeout(()=>{
-            // this._render.setStyle(this.elementRef, 'marginLeft', '-200px');
-            this.elementRef.nativeElement.scrollLeft = value.left + 'px';
-        });
-      
-        // this.elementRef.nativeElement.scrollLeft = value.left + 'px';
+      if (value.isHidden) {
+        this._render.setStyle(
+          this.elementRef.nativeElement,
+          'transform',
+          'translateX(' + (0-value.left) + 'px)'
+        );
+      } else {
+        this.elementRef.nativeElement.scrollLeft = value.left;
+      }
     }
     if (value.top) {
-      this.elementRef.nativeElement.scrollLeft = value.top + 'px';
+      this.elementRef.nativeElement.scrollTop = value.top;
     }
   }
 }

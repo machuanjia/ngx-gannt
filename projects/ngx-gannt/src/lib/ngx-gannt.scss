@@ -11,27 +11,36 @@
 
 .ngx-gannt-aside {
   width: 384px;
-  > .ngx-gannt-aside-header {
+  display: flex;
+  flex-direction: column;
+  .ngx-gannt-aside-header {
     border-bottom: 1px #eee solid;
     height: 60px;
     color: #888;
     display: flex;
     align-items: center;
-    > .ngx-gannt-aside-identifier {
+    .ngx-gannt-aside-identifier {
       width: 90px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
-    > .ngx-gannt-aside-tasks {
+    .ngx-gannt-aside-tasks {
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
     }
   }
+  .ngx-gannt-aside-body {
+    flex: 1;
+    height: 0;
+    overflow: auto;
+    margin-right: -9px;
+    padding-right: 9px;
+  }
 }
-.ngx-gannt-divider{
+.ngx-gannt-divider {
   width: 7px;
   box-shadow: 0 0 3px #ddd;
   background: #fff;
@@ -48,36 +57,37 @@
   overflow: hidden;
   padding-left: 7px;
   .ngx-gannt-article-header {
-    display: flex;
-    flex-wrap: nowrap;
-    white-space: nowrap;
     height: 60px;
     border-bottom: 1px #eee solid;
-
-    > div {
-      text-align: center;
-      min-width: 50px;
-      position: relative;
-      padding-top: 30px;
-      color: #666;
-      font-size: 12px;
+    .ngx-gannt-article-scales {
       display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: flex-end;
-      padding-bottom: 5px;
-      > span {
-        position: absolute;
-        top: 12px;
-        left: 18px;
-        text-align: left;
-        white-space: nowrap;
-        background: #fff;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+      > div {
+        text-align: center;
+        min-width: 50px;
+        position: relative;
+        padding-top: 30px;
         color: #666;
+        font-size: 12px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-end;
+        padding-bottom: 5px;
+        > span {
+          position: absolute;
+          top: 12px;
+          left: 18px;
+          text-align: left;
+          white-space: nowrap;
+          background: #fff;
+          color: #666;
+        }
       }
     }
   }
-  .ngx-gannt-article-body{
+  .ngx-gannt-article-body {
     flex-grow: 1;
     overflow: auto;
     height: 0;

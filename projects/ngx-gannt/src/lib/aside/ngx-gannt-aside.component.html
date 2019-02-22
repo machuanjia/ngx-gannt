@@ -1,23 +1,26 @@
-    <div class="ngx-gannt-aside-header">
-      <div class="ngx-gannt-aside-identifier">编号</div>
-      <div class="ngx-gannt-aside-tasks">
-        全部任务<i class="wtf wtf-angle-down"></i>
-      </div>
-    </div>
-    <header class="ngx-gannt-aside-header">
-      <div class="ngx-gannt-accordion">
-        <div class="ngx-gannt-accordion-title">
-          任务名称
-        </div>
-        <div class="ngx-gannt-accordion-content">
-          <div class="ngx-gannt-aside-bd-tasks">
-            <div class="ngx-gannt-aside-bd-tasks-left">
-              <span>1024</span>
-            </div>
-            <div class="ngx-gannt-aside-bd-tasks-right">
-              00123
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
+<header class="ngx-gannt-aside-header">
+  <div class="ngx-gannt-aside-identifier">编号</div>
+  <div class="ngx-gannt-aside-tasks">
+    全部任务<i class="wtf wtf-angle-down"></i>
+  </div>
+</header>
+<div
+  class="ngx-gannt-aside-body"
+  (scroll)="articleScroll($event)"
+  [ngxGanntScroll]="{
+    left: ngxGanntUiService.articleScrollLeft,
+    top: ngxGanntUiService.articleScrollTop,
+    isHidden: false
+  }"
+>
+    1<br /><br /><br /><br /><br /><br /><br />2
+    <br /><br /><br /><br /><br /><br /><br />3
+    <br /><br /><br /><br /><br /><br /><br />4
+    <br /><br /><br /><br /><br /><br /><br />5
+    <br /><br /><br /><br /><br /><br /><br />6
+    <br /><br /><br /><br /><br /><br /><br />7
+    <br /><br /><br /><br /><br /><br /><br />8
+    <br /><br /><br /><br /><br /><br /><br />9
+    <br /><br /><br /><br /><br /><br /><br />10
+    <br /><br /><br /><br /><br /><br /><br />11
+</div>
