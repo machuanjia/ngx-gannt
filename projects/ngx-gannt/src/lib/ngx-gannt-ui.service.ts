@@ -1,12 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ElementRef } from '@angular/core';
 import * as moment from 'moment';
-import { NgxGanntScalesType, NgxGanttConfig, NgxGanntViewTypes } from './ngx-gannt.constant';
+import {
+  NgxGanntScalesType,
+  NgxGanttConfig,
+  NgxGanntViewTypes,
+  NgxGanntDifferUnit
+} from './ngx-gannt.constant';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NgxGanntUiService {
   public dividerXStatic: number;
+  public containerWidth: number;
   public asideWidthStatic = 384;
   public asideWidth = 384;
   public articleScrollLeft = 0;
@@ -79,7 +85,7 @@ export class NgxGanntUiService {
       (this.duration.end - this.duration.start);
   }
 
-  setDayDurationScales():any[] {
+  setDayDurationScales(): any[] {
     const _list = [];
     for (let i = 0; i < this.scale.size; i++) {
       const _date = moment(this.duration.start * 1000).add(i, 'days');
@@ -108,5 +114,100 @@ export class NgxGanntUiService {
       _list.push(obj);
     }
     return _list;
+  }
+  /**
+   * @param element
+   * 初始化设置滚动条到当天
+   */
+  setDefaultScroll(element: ElementRef) {
+    let _from = moment();
+    const _diffUnit: any = NgxGanntDifferUnit[this.configuration.date_type];
+    const _cols = _from.diff(moment(this.duration.start * 1000), _diffUnit);
+    element.nativeElement.scrollLeft =
+      _cols * this.scale.width -
+      (this.containerWidth - this.asideWidthStatic - 7) / 2;
+  }
+
+  /**
+   * @param element
+   * 滚动主任务区域，自动向后、前翻时间区间
+   */
+  autoScrollDuration(element: ElementRef) {
+    if (!element) {
+      return;
+    }
+    const _left = element.nativeElement.scrollLeft;
+    switch (this.configuration.date_type) {
+      case NgxGanntScalesType.day:
+        if (
+          _left >
+          (this.scale.size - 5) * this.scale.width -
+            (this.containerWidth - this.asideWidthStatic - 7)
+        ) {
+          this.setDuration(
+            moment(this.duration.start * 1000),
+            moment(this.duration.end * 1000).add(1, 'months')
+          );
+          element.nativeElement.scrollLeft = _left;
+        }
+        if (_left < 5 * this.scale.width) {
+          this.setDuration(
+            moment(this.duration.start * 1000).subtract(1, 'months'),
+            moment(this.duration.end * 1000)
+          );
+          element.nativeElement.scrollLeft = _left + 30 * this.scale.width;
+        }
+        break;
+      case NgxGanntScalesType.week:
+        if (
+          _left >
+          (this.scale.size - 2) * this.scale.width -
+            (this.containerWidth - this.asideWidthStatic - 7)
+        ) {
+          this.setDuration(
+            moment(this.duration.start * 1000),
+            moment(this.duration.end * 1000)
+              .add(1, 'months')
+              .endOf('week')
+          );
+          element.nativeElement.scrollLeft = _left;
+        }
+        if (_left < 2 * this.scale.width) {
+          this.setDuration(
+            moment(this.duration.start * 1000)
+              .subtract(1, 'months')
+              .startOf('week'),
+            moment(this.duration.end * 1000)
+          );
+          element.nativeElement.scrollLeft = _left + 2 * this.scale.width;
+        }
+        break;
+      case NgxGanntScalesType.month:
+        if (
+          _left >
+          (this.scale.size - 0.5) * this.scale.width -
+            (this.containerWidth - this.asideWidthStatic - 7)
+        ) {
+          this.setDuration(
+            moment(this.duration.start * 1000),
+            moment(this.duration.end * 1000)
+              .add(1, 'years')
+              .endOf('year')
+          );
+          element.nativeElement.scrollLeft = _left;
+        }
+        if (_left < 0.5 * this.scale.width) {
+          this.setDuration(
+            moment(this.duration.start * 1000)
+              .subtract(1, 'years')
+              .startOf('year'),
+            moment(this.duration.end * 1000)
+          );
+          element.nativeElement.scrollLeft = _left + 0.5 * this.scale.width;
+        }
+        break;
+      default:
+        break;
+    }
   }
 }

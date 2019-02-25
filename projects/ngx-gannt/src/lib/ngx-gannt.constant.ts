@@ -4,6 +4,8 @@ export enum NgxGanntScalesType {
   month = 2
 }
 
+export const NgxGanntDifferUnit = ['days','weeks','months'];
+
 export const NgxGanntViewTypes = {
   task: 0,
   member: 1

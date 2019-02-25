@@ -18,29 +18,24 @@ import { NgxGanntService } from './ngx-gannt.service';
 export class NgxGanntComponent implements OnInit, AfterViewInit {
   @HostBinding('class') classes = 'ngx-gannt-wrap';
   @ViewChild('divider') divider;
+  @ViewChild('ngxGanntContainer') ngxGanntContainer;
   constructor(
     public ngxGanntUiService: NgxGanntUiService,
     public ngxGanntService: NgxGanntService
   ) {}
 
   ngOnInit() {
+    this.ngxGanntUiService.dividerXStatic = this.divider.nativeElement.offsetLeft;
+    this.ngxGanntUiService.containerWidth = this.ngxGanntContainer.nativeElement.clientWidth;
     this.ngxGanntUiService.init();
   }
   ngAfterViewInit() {
-    this.ngxGanntUiService.dividerXStatic = this.divider.nativeElement.offsetLeft;
   }
   started(event:any){
-    console.log('-=');
-    console.log(event);
-    console.log('-=');
   }
   moved(event: any) {
     this.ngxGanntUiService.setAsideWidth(event.pointerPosition.x);
   }
   ended(event: any) {
-    // this.ngxGanntUiService.setAsideWidth(event.pointerPosition.x);
-    console.log('-');
-    console.log(event);
-    console.log('-');
   }
 }
