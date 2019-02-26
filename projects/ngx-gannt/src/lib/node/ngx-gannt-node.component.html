@@ -1,0 +1,11 @@
+<ul>
+  <li>
+    {{ node.name }}
+    <ul *ngIf="node.children">
+      <ngx-gannt-node
+        *ngFor="let nd of node.children"
+        [node]="nd"
+      ></ngx-gannt-node>
+    </ul>
+  </li>
+</ul>

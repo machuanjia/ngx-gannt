@@ -6,6 +6,7 @@ import {
   NgxGanntViewTypes,
   NgxGanntDifferUnit
 } from './ngx-gannt.constant';
+import { NgxGanntService } from './ngx-gannt.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +18,7 @@ export class NgxGanntUiService {
   public asideWidth = 384;
   public articleScrollLeft = 0;
   public articleScrollTop = 0;
-  public configuration: NgxGanttConfig = {
-    view: NgxGanntViewTypes.task,
-    date_type: NgxGanntScalesType.day
-  };
+
   public duration: {
     start?: number;
     end?: number;
@@ -33,7 +31,7 @@ export class NgxGanntUiService {
     list?: any;
   };
 
-  constructor() {}
+  constructor(private ngxGanntService: NgxGanntService) {}
 
   init() {
     const _start = moment()
@@ -57,7 +55,7 @@ export class NgxGanntUiService {
   setDuration(_start?: any, _end?: any) {
     let _ds = _start;
     let _de = _end;
-    switch (this.configuration.date_type) {
+    switch (this.ngxGanntService.configuration.date_type) {
       case NgxGanntScalesType.day:
         this.duration = {
           start: _ds.format('X') * 1,
@@ -121,7 +119,7 @@ export class NgxGanntUiService {
    */
   setDefaultScroll(element: ElementRef) {
     let _from = moment();
-    const _diffUnit: any = NgxGanntDifferUnit[this.configuration.date_type];
+    const _diffUnit: any = NgxGanntDifferUnit[this.ngxGanntService.configuration.date_type];
     const _cols = _from.diff(moment(this.duration.start * 1000), _diffUnit);
     element.nativeElement.scrollLeft =
       _cols * this.scale.width -
@@ -137,7 +135,7 @@ export class NgxGanntUiService {
       return;
     }
     const _left = element.nativeElement.scrollLeft;
-    switch (this.configuration.date_type) {
+    switch (this.ngxGanntService.configuration.date_type) {
       case NgxGanntScalesType.day:
         if (
           _left >

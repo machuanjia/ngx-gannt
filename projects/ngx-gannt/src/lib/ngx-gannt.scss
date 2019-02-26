@@ -118,12 +118,22 @@
   }
   .ngx-gannt-article-body {
     flex-grow: 1;
-    overflow: auto;
-    height: 0;
+    overflow: hidden;
     display: flex;
+    position: relative;
+    .ngx-gannt-article-body-scales-wrap{
+      position: absolute;
+      top:0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      // background: #ff0;
+      // opacity: .5;
+    }
     .ngx-gannt-article-body-scales {
       display: flex;
       flex-wrap: nowrap;
+      height: 100%;
       .ngx-gannt-article-scale {
         border-right: 1px #eee solid;
         box-sizing: border-box;
@@ -185,6 +195,17 @@
           border-right: 1px #cacaca solid;
         }
       }
+    }
+    .ngx-gannt-article-body-content-wrap{
+      position: absolute;
+      top:0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      // background: #f00;
+      // opacity: .5;
+      overflow: auto;
     }
   }
 }

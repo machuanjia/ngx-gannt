@@ -9,7 +9,7 @@
   >
     <div
       class="ngx-gannt-article-header-scale type{{
-        ngxGanntUiService.configuration.date_type
+        ngxGanntService.configuration.date_type
       }}"
       [ngClass]="scale.className"
       *ngFor="let scale of ngxGanntUiService.scale.list; trackBy: trackByIdFn"
@@ -19,22 +19,51 @@
     </div>
   </div>
 </header>
-<div
-  class="ngx-gannt-article-body"
-  #articleBody
-  (scroll)="articleScroll($event)"
-  [ngxGanntScroll]="{
-    left: ngxGanntUiService.articleScrollLeft,
-    top: ngxGanntUiService.articleScrollTop,
-    isHidden: false
-  }"
->
-  <div class="ngx-gannt-article-body-scales">
+<div class="ngx-gannt-article-body">
+  <div
+    class="ngx-gannt-article-body-scales-wrap"
+    [ngxGanntScroll]="{
+      left: ngxGanntUiService.articleScrollLeft,
+      top: ngxGanntUiService.articleScrollTop,
+      isHidden: true
+    }"
+  >
     <div
-      class="ngx-gannt-article-scale"
-      [ngClass]="scale.className"
-      *ngFor="let scale of ngxGanntUiService.scale.list; trackBy: trackByIdFn"
-      [ngStyle]="{ 'min-width': ngxGanntUiService.scale.width + 'px' }"
-    ></div>
+      class="ngx-gannt-article-body-scales"
+      [ngStyle]="{
+        width:
+          ngxGanntUiService.scale.size * ngxGanntUiService.scale.width + 'px'
+      }"
+    >
+      <div
+        class="ngx-gannt-article-scale"
+        [ngClass]="scale.className"
+        *ngFor="let scale of ngxGanntUiService.scale.list; trackBy: trackByIdFn"
+        [ngStyle]="{ 'min-width': ngxGanntUiService.scale.width + 'px' }"
+      ></div>
+    </div>
+  </div>
+  <div
+    class="ngx-gannt-article-body-content-wrap"
+    #articleBody
+    (scroll)="articleScroll($event)"
+    [ngxGanntScroll]="{
+      left: ngxGanntUiService.articleScrollLeft,
+      top: ngxGanntUiService.articleScrollTop,
+      isHidden: false
+    }"
+  >
+    <div
+      class="ngx-gannt-article-body-content"
+      [ngStyle]="{
+        width:
+          ngxGanntUiService.scale.size * ngxGanntUiService.scale.width + 'px'
+      }"
+    >
+      <ngx-gannt-node
+        *ngFor="let node of ngxGanntDataService.data"
+        [node]="node"
+      ></ngx-gannt-node>
+    </div>
   </div>
 </div>

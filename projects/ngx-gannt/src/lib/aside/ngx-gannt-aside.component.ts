@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding, Input } from '@angular/core';
 import { NgxGanntUiService } from '../ngx-gannt-ui.service';
+import { NgxGanntDataService } from '../ngx-gannt-data.service';
 
 @Component({
   selector: 'ngx-gannt-aside',
@@ -7,7 +8,11 @@ import { NgxGanntUiService } from '../ngx-gannt-ui.service';
 })
 export class NgxGanntAsideComponent implements OnInit, OnDestroy {
   @HostBinding('class.ngx-gannt-aside') isAside = true;
-  constructor(public ngxGanntUiService: NgxGanntUiService) {}
+  @Input() node;
+  constructor(
+    public ngxGanntUiService: NgxGanntUiService,
+    public ngxGanntDataService: NgxGanntDataService
+  ) {}
   ngOnInit() {}
   ngOnDestroy() {}
   articleScroll(event: Event) {
