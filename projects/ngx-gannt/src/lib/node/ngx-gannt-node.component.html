@@ -1,11 +1,29 @@
-<ul>
-  <li>
-    {{ node.name }}
-    <ul *ngIf="node.children">
-      <ngx-gannt-node
-        *ngFor="let nd of node.children"
-        [node]="nd"
-      ></ngx-gannt-node>
-    </ul>
-  </li>
-</ul>
+<ng-template #tpl>
+  <ul class="ngx-gannt-node-wrap">
+    <li [ngClass]="{'expand' : node.isExpand, 'folder' : !node.isExpand}">
+      <span
+        class="node-wrap"
+        [ngClass]="{ active: node.active }"
+        (mouseenter)="nodeEnter($event)"
+        (mouseleave)="nodeLeave($event)"
+      >
+        <span class="node-left">
+          <span class="mr-1" thyLabel="primary">{{ node.name }}</span>
+        </span>
+        <span class="node-right" [ngStyle]="{'margin-left': node.level * 26 + 'px'}">
+          <ng-container *ngIf="node.children">
+            <span (click)="expandNode(node)">+</span>
+          </ng-container>
+          <ng-template
+            [ngTemplateOutlet]="template"
+            [ngTemplateOutletContext]="{ $implicit: node }"
+          ></ng-template>
+        </span>
+      </span>
+      <ng-container *ngIf="node.children">
+        <ngx-gannt-node *ngFor="let nd of node.children" [node]="nd" [template]="template">
+        </ngx-gannt-node>
+      </ng-container>
+    </li>
+  </ul>
+</ng-template>

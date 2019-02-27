@@ -1,3 +1,7 @@
+@import 'ngx-tethys/styles/variables.scss';
+@import 'ngx-tethys/label/styles/mixin.scss';
+@import 'ngx-tethys/label/styles/label.scss';
+
 .ngx-gannt-wrap {
   display: block;
   height: 100%;
@@ -33,23 +37,28 @@
     }
   }
   .ngx-gannt-aside-body {
-    flex: 1;
-    height: 0;
+    flex-grow: 1;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    overflow: hidden;
     position: relative;
-    .ngx-gannt-aside-content {
-      flex-grow: 1;
-      overflow: auto;
-      padding-right: 10px;
+    box-sizing: initial;
+    padding-right: 23px;
+    margin-right: -23px;
+    z-index: 1;
+    .ngx-gannt-aside-identifier {
+      width: 120px;
+      border-right: 1px #eee solid;
     }
-    .scroll-mask {
+    .ngx-gannt-aside-content {
       position: absolute;
-      width: 20px;
-      height: 100%;
-      background: #fff;
-      right: 0;
       top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      padding-bottom: 10px;
     }
   }
 }
@@ -70,6 +79,8 @@
   flex-direction: column;
   overflow: hidden;
   padding-left: 7px;
+  z-index: 1;
+  background: #fff;
   .ngx-gannt-article-header {
     height: 60px;
     border-bottom: 1px #eee solid;
@@ -121,9 +132,9 @@
     overflow: hidden;
     display: flex;
     position: relative;
-    .ngx-gannt-article-body-scales-wrap{
+    .ngx-gannt-article-body-scales-wrap {
       position: absolute;
-      top:0;
+      top: 0;
       bottom: 0;
       left: 0;
       right: 0;
@@ -196,9 +207,9 @@
         }
       }
     }
-    .ngx-gannt-article-body-content-wrap{
+    .ngx-gannt-article-body-content-wrap {
       position: absolute;
-      top:0;
+      top: 0;
       bottom: 0;
       left: 0;
       right: 0;
@@ -223,5 +234,46 @@
     padding-right: 23px;
     margin-right: -23px;
     z-index: 1;
+  }
+}
+
+.ngx-gannt-node-wrap {
+  list-style: none;
+  display: block;
+  margin: 0;
+  padding: 0;
+  li {
+    display: block;
+    padding: 0;
+    margin: 0;
+    &.folder{
+      >ul{
+        display: none;
+      }
+    }
+    .node-wrap {
+      display: flex;
+      height: 44px;
+      .node-left {
+        width: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .node-right {
+        flex-grow: 1;
+        width: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        white-space: nowrap;
+        overflow: hidden;
+        padding-left: 36px;
+      }
+      &.active {
+        background: #fff;
+        box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.2);
+      }
+    }
   }
 }

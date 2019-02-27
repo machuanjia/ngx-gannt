@@ -20,7 +20,6 @@ export class NgxGanntScrollDirective {
   constructor(private elementRef: ElementRef, private _render: Renderer2) {}
 
   setScroll(value: { left?: number; top?: number; isHidden?: boolean }) {
-    console.log(value)
     if (value.left) {
       if (value.isHidden) {
         this._render.setStyle(
