@@ -1,29 +1,68 @@
 <ng-template #tpl>
   <ul class="ngx-gannt-node-wrap">
-    <li [ngClass]="{'expand' : node.isExpand, 'folder' : !node.isExpand}">
+    <li [ngClass]="{ expand: node.isExpand, folder: !node.isExpand }">
       <span
         class="node-wrap"
         [ngClass]="{ active: node.active }"
         (mouseenter)="nodeEnter($event)"
         (mouseleave)="nodeLeave($event)"
       >
-        <span class="node-left">
-          <span class="mr-1" thyLabel="primary">{{ node.name }}</span>
-        </span>
-        <span class="node-right" [ngStyle]="{'margin-left': node.level * 26 + 'px'}">
-          <ng-container *ngIf="node.children">
-            <span (click)="expandNode(node)">+</span>
-          </ng-container>
-          <ng-template
-            [ngTemplateOutlet]="template"
-            [ngTemplateOutletContext]="{ $implicit: node }"
-          ></ng-template>
-        </span>
+        <ng-container *ngIf="!type">
+          <span class="node-left">
+            <span class="mr-1" thyLabel="primary">{{ node.name }}</span>
+          </span>
+
+          <span
+            class="node-right"
+            [ngStyle]="{ 'margin-left': node.level * 26 + 'px' }"
+          >
+            <ng-container *ngIf="node.children">
+              <span (click)="expandNode(node)">+</span>
+            </ng-container>
+            {{ node.name }}
+          </span>
+        </ng-container>
+        <ng-container *ngIf="type">
+          <ng-container
+            [ngTemplateOutlet]="entityTemplate"
+            [ngTemplateOutletContext]="{ entry: node }"
+          ></ng-container>
+        </ng-container>
       </span>
+
       <ng-container *ngIf="node.children">
-        <ngx-gannt-node *ngFor="let nd of node.children" [node]="nd" [template]="template">
+        <ngx-gannt-node *ngFor="let nd of node.children" [node]="nd">
         </ngx-gannt-node>
       </ng-container>
     </li>
   </ul>
+  <ng-template #entityTemplate let-entry="entry">
+    <span
+      class="handdle-left"
+      (cdkDragStarted)="nodeStarted($event, entry, false)"
+      (cdkDragEnded)="nodeEnded($event, entry, false)"
+      (cdkDragMoved)="nodeMoved($event, entry, false)"
+      cdkDragLockAxis="x"
+      cdkDrag
+      [ngStyle]="{ left: entry.x + 5 + 'px', width: '5px' }"
+    ></span>
+    <div
+      id="entity-{{ entry.id }}"
+      class="entity-wrap"
+      cdkDragLockAxis="x"
+      cdkDrag
+      [ngStyle]="{ left: entry.x + 'px', width: entry.w + 'px' }"
+    >
+      {{ entry.name }}
+    </div>
+    <span
+      class="handdle-right"
+      (cdkDragStarted)="nodeStarted($event, entry, true)"
+      (cdkDragEnded)="nodeEnded($event, entry, true)"
+      (cdkDragMoved)="nodeMoved($event, entry, true)"
+      cdkDragLockAxis="x"
+      cdkDrag
+      [ngStyle]="{ left: entry.x + entry.w - 12 + 'px', width: '5px' }"
+    ></span>
+  </ng-template>
 </ng-template>

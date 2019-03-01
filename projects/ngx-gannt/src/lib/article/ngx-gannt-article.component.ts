@@ -5,6 +5,7 @@ import {
   HostBinding,
   ViewChild,
   Renderer2,
+  RendererFactory2,
   AfterViewInit
 } from '@angular/core';
 import { NgxGanntUiService } from '../ngx-gannt-ui.service';
@@ -23,12 +24,15 @@ export class NgxGanntArticleComponent
   trackByIdFn(index, item) {
     return item._id || item.id;
   }
+  private renderer: Renderer2;
   constructor(
     public ngxGanntUiService: NgxGanntUiService,
     public ngxGanntDataService: NgxGanntDataService,
     public ngxGanntService: NgxGanntService,
-    private render: Renderer2
-  ) {}
+    public rendererFactory: RendererFactory2
+  ) {
+    this.renderer = rendererFactory.createRenderer(null, null);
+  }
   ngOnInit() {}
   ngOnDestroy() {}
   ngAfterViewInit() {
@@ -39,6 +43,8 @@ export class NgxGanntArticleComponent
       event.srcElement.scrollLeft,
       event.srcElement.scrollTop
     );
-    this.ngxGanntUiService.autoScrollDuration(this.articleBody);
+    this.ngxGanntUiService.autoScrollDuration(this.articleBody,()=>{
+      this.ngxGanntDataService.initDatas();
+    });
   }
 }

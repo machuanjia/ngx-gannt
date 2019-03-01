@@ -17,6 +17,8 @@ export class AppComponent {
       id: 1,
       name: 'root1',
       level: 0,
+      start: 1551335741,
+      end: 1552199750,
       children: [
         { id: 2, name: 'child1', level: 1 },
         { id: 3, name: 'child2', level: 1 }

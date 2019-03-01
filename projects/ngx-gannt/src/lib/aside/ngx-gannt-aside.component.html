@@ -15,10 +15,7 @@
       isHidden: false
     }"
   >
-    <ngx-gannt-node *ngFor="let node of ngxGanntDataService.data" [template]="template" [node]="node">
+    <ngx-gannt-node *ngFor="let node of ngxGanntDataService.data" [node]="node">
     </ngx-gannt-node>
-    <ng-template #template let-node>
-        <div>{{node.name}}</div>
-      </ng-template>
   </div>
 </div>

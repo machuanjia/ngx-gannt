@@ -31,7 +31,9 @@ export class NgxGanntUiService {
     list?: any;
   };
 
-  constructor(private ngxGanntService: NgxGanntService) {}
+  constructor(
+    private ngxGanntService: NgxGanntService,
+  ) {}
 
   init() {
     const _start = moment()
@@ -81,6 +83,7 @@ export class NgxGanntUiService {
     this.duration.unit =
       (this.scale.width * this.scale.size) /
       (this.duration.end - this.duration.start);
+    this.emitUiParams();
   }
 
   setDayDurationScales(): any[] {
@@ -119,7 +122,8 @@ export class NgxGanntUiService {
    */
   setDefaultScroll(element: ElementRef) {
     let _from = moment();
-    const _diffUnit: any = NgxGanntDifferUnit[this.ngxGanntService.configuration.date_type];
+    const _diffUnit: any =
+      NgxGanntDifferUnit[this.ngxGanntService.configuration.date_type];
     const _cols = _from.diff(moment(this.duration.start * 1000), _diffUnit);
     element.nativeElement.scrollLeft =
       _cols * this.scale.width -
@@ -130,7 +134,7 @@ export class NgxGanntUiService {
    * @param element
    * 滚动主任务区域，自动向后、前翻时间区间
    */
-  autoScrollDuration(element: ElementRef) {
+  autoScrollDuration(element: ElementRef, callBack: Function) {
     if (!element) {
       return;
     }
@@ -207,5 +211,21 @@ export class NgxGanntUiService {
       default:
         break;
     }
+    if (callBack) {
+      callBack();
+    }
+  }
+
+  emitUiParams() {
+    this.ngxGanntService.setUiOptions({
+      dividerXStatic: this.dividerXStatic,
+      containerWidth: this.containerWidth,
+      asideWidthStatic: this.asideWidthStatic,
+      asideWidth: this.asideWidth,
+      articleScrollLeft: this.articleScrollLeft,
+      articleScrollTop: this.articleScrollTop,
+      duration: this.duration,
+      scale: this.scale
+    });
   }
 }

@@ -4,7 +4,7 @@ export enum NgxGanntScalesType {
   month = 2
 }
 
-export const NgxGanntDifferUnit = ['days','weeks','months'];
+export const NgxGanntDifferUnit = ['days', 'weeks', 'months'];
 
 export const NgxGanntViewTypes = {
   task: 0,
@@ -18,4 +18,9 @@ export interface NgxGanttConfig {
   isPager?: boolean;
   pagerSize?: number;
   pagerMemberSize?: number;
+}
+
+export enum NgxGanntNodeShowType {
+  aside,
+  article
 }
